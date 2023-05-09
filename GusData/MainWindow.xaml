@@ -1,0 +1,55 @@
+﻿<Window x:Class="GusData.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GusData"
+        xmlns:converters="clr-namespace:GusData.Converters"
+        mc:Ignorable="d"
+        xmlns:viewmodel="clr-namespace:GusData.Viewmodel"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+        Title="MainWindow" Height="450" Width="800">
+
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                Content="Load Data"
+                Margin="10"
+                Command="{Binding GetDataCommand}"/>
+
+        <DataGrid Grid.Row="1" 
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding ListOfSections}"
+                  CellStyle="{StaticResource DataGridCellColoring}"
+                  
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Width="40"
+                                    Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="NAZWA"
+                                    Width="*"
+                                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="ID NADRZEDNY ELEMENT"
+                                    Width="150"
+                                    Binding="{Binding IdTopElement}"/>
+                <DataGridTextColumn Header="ID POZIOM"
+                                    Width="80"
+                                    Binding="{Binding IdLevel}"/>
+                <DataGridTextColumn Header="NAZWA POZIOM"
+                                    Width="*"
+                                    Binding="{Binding NameOfLevel}"/>
+                <DataGridCheckBoxColumn Header="CZY ZMIENNE"
+                                        Width="90"
+                                        Binding="{Binding IsChangable}"/>
+            </DataGrid.Columns>
+        </DataGrid> 
+    </Grid>
+</Window>
